@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add-car</title>
+</head>
+<style>
+body{
+    display: flex;
+    font-family: Arial, sans-serif; 
+      background-position:center;
+      background-size:cover;
+       justify-content:space-evenly; 
+       align-items: center;
+       height: 100vh;
+       flex-direction: column;
+   
+       
+       
+}
+div{
+    align-items: center;
+    justify-content: center;
+   
+    display: flex;
+    font-size: larger;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    box-sizing: border-box;
+    box-shadow: 0 0 0 3px rgb(206, 112, 214,50) ;
+    padding: 40px;
+    border-radius: 4px;
+}
+button{
+    color: azure;
+    background-color: rgb(3, 94, 7);
+   
+    text-align: center;
+}
+
+h1{
+    text-align: center;
+}
+</style>
+<body>
+     <h1 >ADD CAR</h1>
+    <div >
+        <br>
+        <form action="new" method="post">
+            {% csrf_token %}
+        <label >car name:</label><input name="name" type="text">
+        <br>
+        <label >car image:</label><input name="img" type="file" accept="images/*" ><br>
+        <label>price per day</label><input  name="price" type="text">
+        <br>
+        <button style="margin-left: 90px;">submit</button>
+        </form>
+    </div>
+    
+</body>
+</html>

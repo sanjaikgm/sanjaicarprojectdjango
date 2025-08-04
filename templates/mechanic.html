@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS Cars - Vehicle Maintenance System</title>
+    <style>
+        /* Basic Reset & Typography */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #e74c3c;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #e74c3c;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2c3e50;
+        }
+        
+        .search-bar {
+            display: flex;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+        
+        .search-bar input {
+            padding: 0.8rem;
+            width: 300px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 1rem;
+        }
+        
+        .search-bar button {
+            padding: 0.8rem 1.5rem;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background-color: #c0392b;
+        }
+        
+        /* Vehicle Cards */
+        .vehicle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .vehicle-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .vehicle-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .vehicle-image {
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .vehicle-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .vehicle-details {
+            padding: 1.5rem;
+        }
+        
+        .vehicle-details h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .vehicle-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+        
+        .condition {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+        
+        .condition-excellent {
+            background-color: #27ae60;
+            color: white;
+        }
+        
+        .condition-good {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .condition-fair {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .condition-poor {
+            background-color: #e74c3c;
+            color: white;
+        }
+        
+        .vehicle-info p {
+            margin-bottom: 0.5rem;
+            color: #34495e;
+        }
+        
+        .last-service {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        /* Status Legend */
+        .status-legend {
+            background-color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            margin-right: 0.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin: 0 0.5rem;
+            }
+            
+            .search-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .search-bar input {
+                width: 100%;
+                border-radius: 4px;
+                margin-bottom: 0.5rem;
+            }
+            
+            .search-bar button {
+                width: 100%;
+                border-radius: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">SS <span>Cars</span></div>
+                <nav>
+                    <ul>
+                        <li><a href="{% url 'login_page' %}">Accounts</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <h1>Vehicle Maintenance Dashboard</h1>
+        
+        <!-- Status Legend -->
+        <div class="status-legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #27ae60;"></div>
+                <span>Excellent</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #2ecc71;"></div>
+                <span>Good</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #f39c12;"></div>
+                <span>Fair</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: #e74c3c;"></div>
+                <span>Needs Attention</span>
+            </div>
+        </div>
+        
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" placeholder="Search by make, model, or plate number...">
+            <button>Search</button>
+        </div>
+        
+        <!-- Vehicle Grid -->
+        <div class="vehicle-grid">
+            <!-- Vehicle 1 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d" alt="Toyota Camry">
+                </div>
+                <div class="vehicle-details">
+                    <h3>Toyota Camry 2022</h3>
+                    <div class="vehicle-specs">
+                        <span>Plate: ABC1234</span>
+                        <span>Mileage: 12,345 km</span>
+                    </div>
+                    <span class="condition condition-excellent">Excellent</span>
+                    <div class="vehicle-info">
+                        <p><strong>Engine:</strong> Running smoothly</p>
+                        <p><strong>Brakes:</strong> 90% life remaining</p>
+                        <p><strong>Tires:</strong> 85% tread left</p>
+                        <p><strong>Oil:</strong> Changed 1,200 km ago</p>
+                    </div>
+                    <div class="last-service">
+                        Last serviced: 15 Jan 2023
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vehicle 2 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b" alt="Honda Civic">
+                </div>
+                <div class="vehicle-details">
+                    <h3>Honda Civic 2021</h3>
+                    <div class="vehicle-specs">
+                        <span>Plate: XYZ5678</span>
+                        <span>Mileage: 24,680 km</span>
+                    </div>
+                    <span class="condition condition-good">Good</span>
+                    <div class="vehicle-info">
+                        <p><strong>Engine:</strong> Minor vibration noted</p>
+                        <p><strong>Brakes:</strong> 70% life remaining</p>
+                        <p><strong>Tires:</strong> 75% tread left</p>
+                        <p><strong>Oil:</strong> Due in 500 km</p>
+                    </div>
+                    <div class="last-service">
+                        Last serviced: 05 Feb 2023
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vehicle 3 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://images.unsplash.com/photo-1542362567-b07e54358753" alt="Ford Explorer">
+                </div>
+                <div class="vehicle-details">
+                    <h3>Ford Explorer 2020</h3>
+                    <div class="vehicle-specs">
+                        <span>Plate: DEF9012</span>
+                        <span>Mileage: 38,450 km</span>
+                    </div>
+                    <span class="condition condition-fair">Fair</span>
+                    <div class="vehicle-info">
+                        <p><strong>Engine:</strong> Check engine light on</p>
+                        <p><strong>Brakes:</strong> 50% life remaining</p>
+                        <p><strong>Tires:</strong> 60% tread left</p>
+                        <p><strong>Oil:</strong> Changed 3,000 km ago</p>
+                    </div>
+                    <div class="last-service">
+                        Last serviced: 20 Dec 2022
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vehicle 4 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://images.unsplash.com/photo-1550355291-bbee04a92027" alt="Chevrolet Malibu">
+                </div>
+                <div class="vehicle-details">
+                    <h3>Chevrolet Malibu 2019</h3>
+                    <div class="vehicle-specs">
+                        <span>Plate: GHI3456</span>
+                        <span>Mileage: 52,300 km</span>
+                    </div>
+                    <span class="condition condition-poor">Needs Attention</span>
+                    <div class="vehicle-info">
+                        <p><strong>Engine:</strong> Oil leak detected</p>
+                        <p><strong>Brakes:</strong> 30% life remaining</p>
+                        <p><strong>Tires:</strong> Replace soon (40%)</p>
+                        <p><strong>Oil:</strong> Overdue by 1,000 km</p>
+                    </div>
+                    <div class="last-service">
+                        Last serviced: 10 Nov 2022
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vehicle 5 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8" alt="Dodge Charger">
+                </div>
+                <div class="vehicle-details">
+                    <h3>Dodge Charger 2021</h3>
+                    <div class="vehicle-specs">
+                        <span>Plate: JKL7890</span>
+                        <span>Mileage: 18,750 km</span>
+                    </div>
+                    <span class="condition condition-excellent">Excellent</span>
+                    <div class="vehicle-info">
+                        <p><strong>Engine:</strong> Optimal performance</p>
+                        <p><strong>Brakes:</strong> 95% life remaining</p>
+                        <p><strong>Tires:</strong> 90% tread left</p>
+                        <p><strong>Oil:</strong> Changed 500 km ago</p>
+                    </div>
+                    <div class="last-service">
+                        Last serviced: 28 Feb 2023
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Vehicle 6 -->
+            <div class="vehicle-card">
+                <div class="vehicle-image">
+                    <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70" alt="Audi A4">
+                </div>
+                <div class="vehicle-details">
+                    <h3>Audi A4 2020</h3>
+                    <div class="vehicle-specs">
+                        <span>Plate: MNO1234</span>
+                        <span>Mileage: 32,100 km</span>
+                    </div>
+                    <span class="condition condition-good">Good</span>
+                    <div class="vehicle-info">
+                        <p><strong>Engine:</strong> Small oil consumption</p>
+                        <p><strong>Brakes:</strong> 65% life remaining</p>
+                        <p><strong>Tires:</strong> 70% tread left</p>
+                        <p><strong>Oil:</strong> Due in 1,000 km</p>
+                    </div>
+                    <div class="last-service">
+                        Last serviced: 10 Jan 2023
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 SS Cars Vehicle Maintenance System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

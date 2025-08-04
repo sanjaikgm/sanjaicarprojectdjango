@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Form</title>
+</head>
+<style>
+  body{
+      font-family: Arial, sans-serif;
+       background-image:url("{% static 'image.png' %}"); 
+      background-position:center;
+      background-size:cover;
+      display:flex;
+       justify-content: center; 
+       align-items: center;
+       height: 100vh;
+
+  }
+</style>
+<body >
+ <form action="login_page" method="post">
+      {% csrf_token %}
+  <div style="background-color: #01110b80; padding: 30px 40px; border-radius: 8px; box-shadow: 0px 10px 10px rgb(79, 85, 79); width: 300px;">
+    <h2 style="text-align: center; color: #013114;">Login</h2>
+   
+      
+      <div style="margin-bottom: 15px;">
+        <label  style="display: block; margin-bottom: 5px; color: #ffffff;"><B>USERNAME:-</B></label>
+        <input type="text" id="username" name="username" required
+               style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+      </div>
+      
+      <div style="margin-bottom: 15px;">
+        <label style="display: block; margin-bottom: 5px; color: #fcfdfc;"><B>PASSWORD:-</B></label>
+        <input type="password" id="password" name="password" required
+               style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
+      </div>
+      <a>
+      <button type="submit"
+              style="width: 100%; padding: 10px; background-color: #033b16; color: white; border-radius: 4px; font-size: 16px; "><b>
+        Login</b>
+      </button></a>
+      <p style="color: #ff0000;">{{ key }}</p>
+    
+    <br>
+    <br>
+    <b style="color:white;">New User?</b>
+    <br>
+    <p style="width: 100%;text-align:center;">
+    <a style="width: 100%; padding: 10px; background-color: #033b16; border: none; color: white; border-radius: 4px; font-size: 16px; cursor: pointer;box-sizing:border-box;align-items:center;"href="{% url 'signup_page' %}" >create a new account</a></p>
+    
+  </div>
+</form>
+</body>
+</html>

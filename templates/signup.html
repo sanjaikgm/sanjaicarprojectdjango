@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SING-UP Page</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image:url("{% static 'image.png' %}") ;
+            background-position: center;
+            background-size: cover;
+        }
+        .outer{
+            background-color: #ffffff99;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(79, 85, 79);
+            width: 300px;
+            box-sizing: border-box;
+            background-color:#01110b80;
+        }
+        h1{
+            text-align: center;
+            color:#4CAF50 ;
+
+        }
+        .signup{
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+
+        }
+        
+        label{
+            margin-bottom: 10px;
+            color: rgb(252, 253, 253);
+        }
+        input,select{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <form action="signup_page" method="post">
+         {% csrf_token %}
+    <div class="outer">
+        <h1>Sign Up</h1>
+    
+       
+      <label for="username"><b>Username:-</b></label>
+      <input type="text" id="username" name="username" required>
+      
+      <label for="username"><b>Occupation:-</b></label>
+      <select id="occupation" name="occupation" required>
+        <option value="customer">Customer</option>
+        <option value="mechanic">Mechanic</option>
+        <option value="manager">Manager</option>
+      </select>
+
+      <label><b>Email ID:-</b></label>
+      <input type="email" class="email" name="email" required>
+
+      <label><b>Password:-</b></label>
+      <input type="password" class="password" name="password" required>
+
+      <label><b>Confirm Password:-</b></label>
+      <input type="password" class="confirm" name="confirm" required>
+      <br>
+      <p style="color: #ff0000;">{{ key }}</p>
+        <br>
+        <br>
+        <button type="submit" class="signup">Sign Up</button>
+        <br>
+        <br>
+        <b>Already an user?</b>
+        <a  href="{% url 'login_page' %}"><b>log-in</b></a>
+    
+    </div>
+    </form>
+    
+</body>
+</html>

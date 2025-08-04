@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS Cars - Manager Portal</title>
+    <style>
+        /* Modern Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* Header */
+        .header {
+            
+            background: #1e40af;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            gap: 400px;
+            display: flex;
+        }
+
+
+        
+
+        /* Main Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: white;
+            border-right: 1px solid #e2e8f0;
+            padding: 1.5rem 0;
+        }
+
+        .nav-item {
+            padding: 0.75rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #64748b;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: #f1f5f9;
+            color: #1e40af;
+            border-left: 3px solid #1e40af;
+        }
+
+        .nav-item.active {
+            font-weight: 500;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 2rem;
+        }
+
+        .page-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #1e293b;
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-top: 4px solid #1e40af;
+        }
+
+        .stat-card h3 {
+            font-size: 0.875rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+        a{
+            text-decoration: none;
+        }
+
+        .stat-card p {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Recent Activity */
+        .activity-card {
+            background: white;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .activity-card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: #1e293b;
+        }
+
+        .activity-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-info h4 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .activity-info p {
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+
+        .activity-status {
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .status-confirmed {
+            color: #10b981;
+        }
+
+        .status-pending {
+            color: #f59e0b;
+        }
+
+        .status-cancelled {
+            color: #ef4444;
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .action-btn {
+            background: #1e40af;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .action-btn:hover {
+            background: #1e3a8a;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .quick-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo" >SS Cars <a href="{% url 'login_page' %}" style="color: #e2e8f0;">Accounts</a></div>
+        
+    </header>
+
+    <!-- Main Layout -->
+    <div class="container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <a href="#" class="nav-item active">
+                <span>📊</span> Dashboard
+            </a>
+            <a href="#" class="nav-item">
+                <span>🚗</span> Fleet
+            </a>
+            <a href="#" class="nav-item">
+                <span>📅</span> Bookings
+            </a>
+            <a href="#" class="nav-item">
+                <span>🔧</span> Maintenance
+            </a>
+            <a href="#" class="nav-item">
+                <span>💰</span> Payments
+            </a>
+            <a href="#" class="nav-item">
+                <span>📊</span> Reports
+            </a>
+            <a href="#" class="nav-item">
+                <span>⚙️</span> Settings
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <h1 class="page-title">Dashboard Overview</h1>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <a class="action-btn" for="add" href="{% url 'addcar_page' %}">
+                    <span>➕</span> Add New Car
+
+                </a>
+                <a class="action-btn" href="{% url 'book_page' %}">
+                    <span>📅</span> Manage Bookings
+                </a>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <h3>Total Vehicles</h3>
+                    <p>24</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Active Rentals</h3>
+                    <p>12</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Available Cars</h3>
+                    <p>8</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Maintenance Due</h3>
+                    <p>4</p>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="activity-card">
+                <h2>Recent Bookings</h2>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Toyota Camry - #BK1001</h4>
+                        <p>Alice Johnson • Mar 15 - Mar 20</p>
+                    </div>
+                    <span class="activity-status status-confirmed">Confirmed</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Honda Civic - #BK1002</h4>
+                        <p>Bob Smith • Mar 16 - Mar 22</p>
+                    </div>
+                    <span class="activity-status status-pending">Pending</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Ford Mustang - #BK1003</h4>
+                        <p>Charlie Brown • Mar 18 - Mar 25</p>
+                    </div>
+                    <span class="activity-status status-confirmed">Confirmed</span>
+                </div>
+            </div>
+
+            <!-- Maintenance Alerts -->
+            <div class="activity-card">
+                <h2>Maintenance Alerts</h2>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Toyota Camry (ABC1234)</h4>
+                        <p>Oil change overdue by 500 km</p>
+                    </div>
+                    <span class="activity-status status-pending">Urgent</span>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-info">
+                        <h4>Honda Civic (XYZ5678)</h4>
+                        <p>Brake pads at 30% life</p>
+                    </div>
+                    <span class="activity-status status-pending">Warning</span>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

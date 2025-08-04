@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SSCars - Car Rental Services</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    header {
+      background-color: #111;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh1eHA6oqIndVaJ5p7sHhokwcFg6keUi9kfw&s') no-repeat center center/cover;
+      height: 400px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .section h2 {
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .services {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+    }
+
+    .service-box {
+      background: #fff;
+      padding: 20px;
+      width: 250px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    footer {
+      background-color: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 20px 0;
+      margin-top: 40px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 2em;
+      }
+
+      .services {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SSCars</h1>
+    <nav class="navigation_bar">
+        <a></a>
+        <a href="{% url 'home_page' %}">Home</a>
+        <a href="{% url 'rent_page'%}">Rent_Cars</a>
+        <a href="{% url 'your_page' %}">Your orders</a>
+        <a href="{% url  'login_page' %}">Accounts</a>
+      </nav>  
+  </header>
+
+  <div class="hero">
+    <h1>Reliable & Affordable Car Rentals</h1>
+  </div>
+
+  <div class="section">
+    <h2>About SSCars</h2>
+    <p>SSCars offers a wide range of well-maintained vehicles for all your travel needs. Whether it's a business trip or vacation, we’ve got you covered with flexible rental plans and 24/7 support.</p>
+  </div>
+
+  <div class="section">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service-box">
+        <h3>Self-Drive</h3>
+        <p>Drive at your own pace with our fully sanitized self-drive options.</p>
+      </div>
+      <div class="service-box">
+        <h3>With Driver</h3>
+        <p>Relax and let our professional chauffeurs handle your travel needs.</p>
+      </div>
+      <div class="service-box">
+        <h3>Luxury Cars</h3>
+        <p>Choose from a fleet of luxury cars for special occasions and events.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 SSCars. All rights reserved. | Contact: info@sscars.com</p>
+  </footer>
+
+</body>
+</html>
